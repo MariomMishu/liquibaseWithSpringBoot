@@ -1,63 +1,39 @@
 package com.example.liquibasedemo;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
-@Entity
-@Table(name="tbl_person")
-public class Person implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private long id;
+import java.time.OffsetDateTime;
 
-    @Column(length = 50)
-    private String name;
+/**
+ * Date of creation 05-Aug-2022
+ *
+ * @author Mariom Mishu
+ * @since 0.0.1
+ */
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Person {
 
-    @Column(length = 20)
-    private String height;
+  private String firstName;
 
-    @Column(length = 100)
-    private String address;
+  private String lastName;
 
-    public Person() {
-        super();
-    }
+  private OffsetDateTime dateOfBirth;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  private String street1;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  private String street2;
 
-    public void setHeight(String height) {
-        this.height = height;
-    }
+  private String phoneNumber1;
 
-    public long getId() {
-        return id;
-    }
+  private String phoneNumber2;
 
-    public String getName() {
-        return name;
-    }
 
-    public String getHeight() {
-        return height;
-    }
-
-    public Person(String name, String height) {
-        this.name = name;
-        this.height = height;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }
